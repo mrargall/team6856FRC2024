@@ -20,7 +20,6 @@ public class DriveForward extends CommandBase {
    */
   public DriveForward(DriveSubsystem driveSubsystem, double speedRight, double speedLeft) {
 
-
     this.driveSubsystem = driveSubsystem;
     this.speedRight = speedRight;
     this.speedLeft = speedLeft;
