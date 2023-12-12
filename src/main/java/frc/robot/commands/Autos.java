@@ -4,15 +4,21 @@
 
 package frc.robot.commands;
 
+import frc.robot.Constants.AutoConstants;
 import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.Commands;
 
 public final class Autos {
   /** Example static factory for an autonomous command. */
- // public static CommandBase exampleAuto(DriveSubsystem subsystem) {
-  //  return Commands.sequence(subsystem.exampleMethodCommand(), new DriveForward(subsystem));
- // }
+  public static CommandBase ForwadRightTurnAuto(DriveSubsystem subsystem) {
+  return Commands.sequence(
+    new DriveForward(subsystem, 0.5*AutoConstants.SPEED, 0.5*AutoConstants.SPEED).withTimeout(1),
+    new DriveForward(subsystem, AutoConstants.SPEED, (-AutoConstants.SPEED)).withTimeout(0.8),
+    new DriveForward(subsystem, 0.5*AutoConstants.SPEED, 0.5*AutoConstants.SPEED).withTimeout(1)
+
+  );
+  }
 
   private Autos() {
     throw new UnsupportedOperationException("This is a utility class!");

@@ -8,7 +8,7 @@ package frc.robot.commands;
 
 
 import frc.robot.subsystems.DriveSubsystem;
-
+import frc.robot.Constants.AutoConstants;
 import java.util.function.Supplier;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -45,9 +45,9 @@ public class ArcadeDriveCmd extends CommandBase {
     double realTimeSpeed = speedFunction.get();
     double realTimeTurn = turnFunction.get();
 
-    double left = realTimeSpeed + realTimeTurn;
-    double right = realTimeSpeed - realTimeTurn;
-    driveSubsystem.setMotor(right, left);
+    double left = realTimeSpeed - realTimeTurn;
+    double right = realTimeSpeed + realTimeTurn;
+    driveSubsystem.setMotors(right*AutoConstants.SPEED, left*AutoConstants.SPEED);
   }
 
   // Called once the command ends or is interrupted.
