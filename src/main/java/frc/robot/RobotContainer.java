@@ -7,7 +7,9 @@ package frc.robot;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.DriveForward;
+import frc.robot.commands.ArmToPos;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.ArmSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -23,7 +25,7 @@ import frc.robot.commands.ArcadeDriveCmd;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem driveSubsystem = new DriveSubsystem();
-
+  private final ArmSubsystem armSubsystem = new ArmSubsystem();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController m_driverController =
@@ -37,6 +39,7 @@ public class RobotContainer {
     driveSubsystem.setDefaultCommand(new ArcadeDriveCmd(driveSubsystem, 
                                     () -> m_driverController.getLeftY(), 
                                     () -> -m_driverController.getLeftX()));
+    armSubsystem.setDefaultCommand(new ArmToPos(armSubsystem, 0));
   }
 
   /**
@@ -55,7 +58,8 @@ public class RobotContainer {
     // cancelling on release.
     m_driverController.a().whileTrue(new DriveForward(driveSubsystem, 0.5, 0.5));
     m_driverController.b().whileTrue(new DriveForward(driveSubsystem, -0.5, -0.5));
-    
+    m_driverController.x().whileTrue(new ArmToPos(armSubsystem, 240));
+    m_driverController.y().whileTrue(new ArmToPos(armSubsystem, 180));
   }
 
   /**

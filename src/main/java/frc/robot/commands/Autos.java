@@ -5,9 +5,11 @@
 package frc.robot.commands;
 
 import frc.robot.Constants.AutoConstants;
+import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 
 public final class Autos {
   /** Example static factory for an autonomous command. */
@@ -16,7 +18,6 @@ public final class Autos {
     new DriveForward(subsystem, 0.5*AutoConstants.SPEED, 0.5*AutoConstants.SPEED).withTimeout(1),
     new DriveForward(subsystem, AutoConstants.SPEED, (-AutoConstants.SPEED)).withTimeout(0.8),
     new DriveForward(subsystem, 0.5*AutoConstants.SPEED, 0.5*AutoConstants.SPEED).withTimeout(1)
-
   );
   }
 
