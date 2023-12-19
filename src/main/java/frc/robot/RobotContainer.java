@@ -39,6 +39,7 @@ public class RobotContainer {
     driveSubsystem.setDefaultCommand(new ArcadeDriveCmd(driveSubsystem, 
                                     () -> m_driverController.getLeftY(), 
                                     () -> -m_driverController.getLeftX()));
+    armSubsystem.setDefaultCommand(new ArmToPos(armSubsystem, 0));
   }
 
   /**
@@ -57,7 +58,7 @@ public class RobotContainer {
     // cancelling on release.
     m_driverController.a().whileTrue(new DriveForward(driveSubsystem, 0.5, 0.5));
     m_driverController.b().whileTrue(new DriveForward(driveSubsystem, -0.5, -0.5));
-    m_driverController.x().whileTrue(new ArmToPos(armSubsystem, 0));
+    m_driverController.x().whileTrue(new ArmToPos(armSubsystem, 240));
     m_driverController.y().whileTrue(new ArmToPos(armSubsystem, 180));
   }
 
